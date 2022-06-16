@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+const fetch = require("node-fetch");
 
 exports.handler = async function(event, context) {
     const url = `https://api.hubapi.com/cms/v3/blogs/posts?hapikey=\
