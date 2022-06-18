@@ -1,4 +1,5 @@
 const fetch = require("node-fetch");
+const headers = require("../utils/header")
 
 exports.handler = async function(event, context) {
     const tags_string = event.queryStringParameters.tags.split(",").map(tag=> tag.split("_").join(" "))
@@ -14,9 +15,7 @@ exports.handler = async function(event, context) {
 
     return {
         statusCode: 200,
-        headers: {
-            "Content-Type":"application/json"
-        },
+        headers,
         body: JSON.stringify(tags)
     }
 }
