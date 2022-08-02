@@ -6,7 +6,7 @@ exports.handler = async function(event, context) {
     ${event.queryStringParameters.contentGroupId ? `&contentGroupId=${event.queryStringParameters.contentGroupId}`:''}\
     ${event.queryStringParameters.limit ? `&limit=${event.queryStringParameters.limit}&offset=1` : '' }\    
     ${event.queryStringParameters.tags ? `&tagId__in=${event.queryStringParameters.tags}` : ''}`
-    console.log(url)
+    
     const res = await fetch(url)
     const result = await res.json()
     return {
