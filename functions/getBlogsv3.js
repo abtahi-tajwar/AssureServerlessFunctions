@@ -3,7 +3,13 @@ const headers = require("../utils/header")
 
 exports.handler = async function(event, context) {
     const contentGroupId = event.queryStringParameters.contentGroupId
-    const url = `https://api.hubapi.com/cms/v3/blogs/tags?hapikey=${process.env.ASSURE_HUBSPOT_API_KEY}${contentGroupId ? `contentGroupId__in=${contentGroupId}` : ""}`
+    const limit = event.queryStringParameters.limit
+    const offset = event.queryStringParameters.offset
+    const url = `https://api.hubapi.com/cms/v3/blogs/posts?hapikey=${process.env.ASSURE_HUBSPOT_API_KEY}\
+${contentGroupId ? `&contentGroupId__in=${contentGroupId}` : ""}\
+${offset ? `&offset=${offset}` : ""}\
+${limit ? `&limit=${limit}` : ""}
+`
     console.log(url)
     const res = await fetch(url)
     const result = await res.json()
